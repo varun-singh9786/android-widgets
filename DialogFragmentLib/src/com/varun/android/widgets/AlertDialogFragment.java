@@ -26,7 +26,7 @@ public class AlertDialogFragment extends DialogFragment {
 	private Drawable iconImage = null;
 	private OnClickListener positiveOnClickListener = null;
 	private OnClickListener negativeOnClickListener = null;
-	private String positionButtonText = null;
+	private String positiveButtonText = null;
 	private String negativeButtonText = null;
 	
 	public AlertDialogFragment() {
@@ -37,14 +37,15 @@ public class AlertDialogFragment extends DialogFragment {
 		Log.i(TAG, "onCreateDialog, context: " + getActivity());
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		Log.i(TAG, "onCreateDialog: " + this.title + " " + this.message + " pos-listener: " + this.positiveOnClickListener + " neg-listener: " + this.negativeOnClickListener);
+		builder.setIcon(this.iconImage);
 		builder.setTitle(this.title);
 		builder.setMessage(this.message);
 		if (this.positiveOnClickListener != null) {
 			Log.i(TAG, "onCreateDialog: inside positiveOnClick");
-			if (this.positionButtonText == null) {
+			if (this.positiveButtonText == null) {
 				builder.setPositiveButton(getString(R.string.ok), this.positiveOnClickListener);
 			} else {
-				builder.setPositiveButton(this.positionButtonText, this.positiveOnClickListener);
+				builder.setPositiveButton(this.positiveButtonText, this.positiveOnClickListener);
 			}
 			
 		}
@@ -52,7 +53,7 @@ public class AlertDialogFragment extends DialogFragment {
 			if (this.negativeButtonText == null) {
 				builder.setNegativeButton(getString(R.string.cancel), this.positiveOnClickListener);
 			} else {
-				builder.setNegativeButton(this.positionButtonText, this.positiveOnClickListener);
+				builder.setNegativeButton(this.positiveButtonText, this.positiveOnClickListener);
 			}
 			builder.setNegativeButton(this.negativeButtonText, this.negativeOnClickListener);
 		}
@@ -69,23 +70,25 @@ public class AlertDialogFragment extends DialogFragment {
 	/**
 	 * @param icon the icon to set
 	 */
-	public void setIconImage(Drawable icon) {
+	public AlertDialogFragment setIconImage(Drawable icon) {
 		this.iconImage = icon;
+		return this;
 	}
 	
 
 	/**
 	 * @return the positionButtonText
 	 */
-	public String getPositionButtonText() {
-		return positionButtonText;
+	public String getPositiveButtonText() {
+		return positiveButtonText;
 	}
 
 	/**
-	 * @param positionButtonText the positionButtonText to set
+	 * @param positiveButtonText the positionButtonText to set
 	 */
-	public void setPositionButtonText(String positionButtonText) {
-		this.positionButtonText = positionButtonText;
+	public AlertDialogFragment setPositiveButtonText(String positiveButtonText) {
+		this.positiveButtonText = positiveButtonText;
+		return this;
 	}
 
 	/**
@@ -98,8 +101,9 @@ public class AlertDialogFragment extends DialogFragment {
 	/**
 	 * @param negativeButtonText the negativeButtonText to set
 	 */
-	public void setNegativeButtonText(String negativeButtonText) {
+	public AlertDialogFragment setNegativeButtonText(String negativeButtonText) {
 		this.negativeButtonText = negativeButtonText;
+		return this;
 	}
 
 	/**
@@ -112,9 +116,10 @@ public class AlertDialogFragment extends DialogFragment {
 	/**
 	 * @param positiveOnClickListener the positiveOnClickListener to set
 	 */
-	public void setPositiveOnClickListener(String positiveButtonText, OnClickListener positiveOnClickListener) {
+	public AlertDialogFragment setPositiveOnClickListener(String positiveButtonText, OnClickListener positiveOnClickListener) {
 		Log.i(TAG, " setting setPositiveOnClickListener");
 		this.positiveOnClickListener = positiveOnClickListener;
+		return this;
 	}
 
 	/**
@@ -127,9 +132,10 @@ public class AlertDialogFragment extends DialogFragment {
 	/**
 	 * @param negativeOnClickListener the negativeOnClickListener to set
 	 */
-	public void setNegativeOnClickListener(String negativeButtonText, OnClickListener negativeOnClickListener) {
+	public AlertDialogFragment setNegativeOnClickListener(String negativeButtonText, OnClickListener negativeOnClickListener) {
 		this.negativeOnClickListener = negativeOnClickListener;
 		this.negativeButtonText = negativeButtonText;
+		return this;
 	}
 
 	/**
@@ -142,8 +148,9 @@ public class AlertDialogFragment extends DialogFragment {
 	/**
 	 * @param title the title to set
 	 */
-	public void setTitle(String title) {
+	public AlertDialogFragment setTitle(String title) {
 		this.title = title;
+		return this;
 	}
 
 	/**
@@ -156,9 +163,10 @@ public class AlertDialogFragment extends DialogFragment {
 	/**
 	 * @param message the message to set
 	 */
-	public void setMessage(String message) {
+	public AlertDialogFragment setMessage(String message) {
 		this.message = message;
 		Log.i(TAG, "setMessage: " + this.message);
+		return this;
 	}
 	
 	public void dismiss() {
