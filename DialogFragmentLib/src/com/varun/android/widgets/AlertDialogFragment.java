@@ -5,7 +5,6 @@ package com.varun.android.widgets;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -23,25 +22,28 @@ public class AlertDialogFragment extends DialogFragment {
 	private static final String TAG = AlertDialogFragment.class.getSimpleName();
 	private String title = null;
 	private String message = null;
-	private Drawable iconImage = null;
+	private Drawable icon = null;
 	private OnClickListener positiveOnClickListener = null;
 	private OnClickListener negativeOnClickListener = null;
 	private String positiveButtonText = null;
 	private String negativeButtonText = null;
 	
+	/**
+	 * Constructor
+	 */
 	public AlertDialogFragment() {
 	}	
+	
+	
+
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		super.onCreateDialog(savedInstanceState);
-		Log.i(TAG, "onCreateDialog, context: " + getActivity());
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		Log.i(TAG, "onCreateDialog: " + this.title + " " + this.message + " pos-listener: " + this.positiveOnClickListener + " neg-listener: " + this.negativeOnClickListener);
-		builder.setIcon(this.iconImage);
+		builder.setIcon(this.icon);
 		builder.setTitle(this.title);
 		builder.setMessage(this.message);
 		if (this.positiveOnClickListener != null) {
-			Log.i(TAG, "onCreateDialog: inside positiveOnClick");
 			if (this.positiveButtonText == null) {
 				builder.setPositiveButton(getString(R.string.ok), this.positiveOnClickListener);
 			} else {
@@ -63,15 +65,15 @@ public class AlertDialogFragment extends DialogFragment {
 	/**
 	 * @return the icon
 	 */
-	public Drawable getIconImage() {
-		return iconImage;
+	public Drawable getIcon() {
+		return icon;
 	}
 
 	/**
 	 * @param icon the icon to set
 	 */
-	public AlertDialogFragment setIconImage(Drawable icon) {
-		this.iconImage = icon;
+	public AlertDialogFragment setIcon(Drawable icon) {
+		this.icon = icon;
 		return this;
 	}
 	
@@ -114,10 +116,10 @@ public class AlertDialogFragment extends DialogFragment {
 	}
 
 	/**
+	 * @param positiveButtonText the positiveButtonText to set
 	 * @param positiveOnClickListener the positiveOnClickListener to set
 	 */
 	public AlertDialogFragment setPositiveOnClickListener(String positiveButtonText, OnClickListener positiveOnClickListener) {
-		Log.i(TAG, " setting setPositiveOnClickListener");
 		this.positiveOnClickListener = positiveOnClickListener;
 		return this;
 	}
@@ -130,6 +132,7 @@ public class AlertDialogFragment extends DialogFragment {
 	}
 
 	/**
+	 * @param negativeButtonText the negativeButtonText to set
 	 * @param negativeOnClickListener the negativeOnClickListener to set
 	 */
 	public AlertDialogFragment setNegativeOnClickListener(String negativeButtonText, OnClickListener negativeOnClickListener) {
@@ -165,7 +168,6 @@ public class AlertDialogFragment extends DialogFragment {
 	 */
 	public AlertDialogFragment setMessage(String message) {
 		this.message = message;
-		Log.i(TAG, "setMessage: " + this.message);
 		return this;
 	}
 	
