@@ -43,20 +43,19 @@ public class AlertDialogFragment extends DialogFragment {
 		builder.setIcon(this.icon);
 		builder.setTitle(this.title);
 		builder.setMessage(this.message);
-		if (this.positiveOnClickListener != null) {
-			if (this.positiveButtonText == null) {
-				builder.setPositiveButton(getString(R.string.ok), this.positiveOnClickListener);
-			} else {
-				builder.setPositiveButton(this.positiveButtonText, this.positiveOnClickListener);
-			}
-			
+		
+		if (this.positiveButtonText == null) {
+			Log.i(TAG,"positiveButtonText null. Setting default");
+			builder.setPositiveButton(getString(R.string.ok), this.positiveOnClickListener);
+		} else {
+			Log.i(TAG,"Setting positiveButtonText: " + this.positiveButtonText + " listener: " + this.positiveOnClickListener);
+			builder.setPositiveButton(this.positiveButtonText, this.positiveOnClickListener);
 		}
-		if (this.negativeOnClickListener != null) {
-			if (this.negativeButtonText == null) {
-				builder.setNegativeButton(getString(R.string.cancel), this.positiveOnClickListener);
-			} else {
-				builder.setNegativeButton(this.positiveButtonText, this.positiveOnClickListener);
-			}
+		if (this.negativeButtonText == null) {
+			Log.i(TAG,"negativeButtonText null. Setting default");
+			builder.setNegativeButton(getString(R.string.cancel), this.negativeOnClickListener);
+		} else {
+			Log.i(TAG,"Setting negativeButtonText: " + this.negativeButtonText + " listener: " + this.negativeOnClickListener);
 			builder.setNegativeButton(this.negativeButtonText, this.negativeOnClickListener);
 		}
 		return builder.create();
@@ -116,7 +115,7 @@ public class AlertDialogFragment extends DialogFragment {
 	}
 
 	/**
-	 * @param positiveButtonText the positiveButtonText to set
+	 * @param positiveButtonText the positiveButtonText to set. Set null for default
 	 * @param positiveOnClickListener the positiveOnClickListener to set
 	 */
 	public AlertDialogFragment setPositiveOnClickListener(String positiveButtonText, OnClickListener positiveOnClickListener) {
@@ -132,7 +131,7 @@ public class AlertDialogFragment extends DialogFragment {
 	}
 
 	/**
-	 * @param negativeButtonText the negativeButtonText to set
+	 * @param negativeButtonText the negativeButtonText to set. Set null for default
 	 * @param negativeOnClickListener the negativeOnClickListener to set
 	 */
 	public AlertDialogFragment setNegativeOnClickListener(String negativeButtonText, OnClickListener negativeOnClickListener) {
