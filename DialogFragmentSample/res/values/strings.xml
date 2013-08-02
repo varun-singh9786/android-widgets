@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DialogFragmentSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="ok">OK</string>
+    <string name="ok_clicked">OK clicked!</string>
+    <string name="cancel_clicked">Cancel clicked!</string>
+    <string name="cancel">Cancel</string>
+    <string name="progress_dialog">Progress Dialog</string>
+
+</resources>
