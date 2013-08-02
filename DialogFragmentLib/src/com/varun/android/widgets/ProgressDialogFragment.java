@@ -5,6 +5,7 @@ package com.varun.android.widgets;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
@@ -17,34 +18,29 @@ import com.varun.android.widgets.dialogfragmentlib.R;
 
 public final class ProgressDialogFragment extends DialogFragment {
 	
-	private boolean mIsCancelable;
+	private boolean mDialogCancelable;
 	public ProgressDialogFragment() {
 		super();
 	}
 
 
 	/**
-	 * @param mIsCancelable
+	 * @param mIsCancelable marks if the progressDialog can be using through back button
 	 */
-	public ProgressDialogFragment(boolean mIsCancelable) {
+	public ProgressDialogFragment(boolean cancelable) {
 		super();
-		this.mIsCancelable = mIsCancelable;
+		this.mDialogCancelable = cancelable;
+	}
+	
+
+
+	public boolean isDialogCancelable() {
+		return this.mDialogCancelable;
 	}
 
 
-	/**
-	 * @return the mIsCancelable
-	 */
-	public boolean isCancelable() {
-		return mIsCancelable;
-	}
-
-
-	/**
-	 * @param mIsCancelable the mIsCancelable to set
-	 */
-	public void setIsCancelable(boolean mIsCancelable) {
-		this.mIsCancelable = mIsCancelable;
+	public void setDialogCancelable(boolean aDialogCancelable) {
+		this.mDialogCancelable = aDialogCancelable;
 	}
 
 
@@ -53,7 +49,9 @@ public final class ProgressDialogFragment extends DialogFragment {
 		super.onCreateDialog(savedInstanceState);
 		final ProgressDialog progressDialog = new ProgressDialog(getActivity());
 		progressDialog.setMessage(getString(R.string.loading));
-		progressDialog.setCancelable(isCancelable());
+		progressDialog.setCancelable(isDialogCancelable());
+		this.setCancelable(mDialogCancelable);
+		
 		return progressDialog;
 	}
 	
